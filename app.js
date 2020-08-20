@@ -1,5 +1,5 @@
 //In This Code No Rooms Were Created
-var app = require('express')();
+/*var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http); 
 let x="";
@@ -18,7 +18,7 @@ x=x+data+"</br>"
 
 http.listen(3000, function() {
    console.log('listening on localhost:3000');
-});  
+});  */
 //by using your own room id code you can create room and start group chat there 
 var app = require('express')();
 var http = require('http').Server(app);
