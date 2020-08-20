@@ -1,16 +1,5 @@
+<!--- Html Page to Group Chat it will work on NoRooms--
 <!DOCTYPE html> 
-<!--- server TO Client
-<html>
-   <head>
-      <title>Hello world</title> 
-      <script src = "/socket.io/socket.io.js"></script> 
-      <script>
-        var socket = io();
-        socket.on('testerEvent', function(data){document.write(data.description)});
-     </script>
-   </head>
-   <body>Hello world</body>
-</html>-->  
 
 <html>
    <head>
@@ -26,10 +15,7 @@
       x=p+"      :      "+q; 
       console.log(x);
       socket.emit('clientEvent', x);  
-      socket.on('newclientconnect',function(data) {
-        // document.body.innerHTML = ""; 
-//console.log(data.description.name); 
-//console.log(data.description.message); 
+      socket.on('newclientconnect',function(data) { 
          document.getElementById("demo").innerHTML="";
          document.getElementById("demo").innerHTML="<p>"+data.description+"</p>" });
   
@@ -45,38 +31,51 @@
       <button onclick="change()">Send</button>  
    </div>
   
+   </body> -->  
+<!--- HTML code for groupchat Using Rooms -->
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hello world</title>
+   </head>
+   <script src = "/socket.io/socket.io.js"></script>
+   
+   <script> 
+   function change(){
+      var socket = io(); 
+      var p=document.getElementById("name").value; 
+      var q=document.getElementById("message").value;   
+      var z=document.getElementById("code").value;    
+      x=p+"      :      "+q;  
+      document.getElementById("message").innerHTML="";
+    
+      socket.emit('clientEvent', {message:x,code:z});  
+    
+socket.on('connectToRoom',function(data) {
+
+console.log(data.description);  
+   
+        document.getElementById("demo").innerHTML="";
+         document.getElementById("demo").innerHTML="<p>"+data.description+"</p>" });
+  
+   }
+   </script> 
+
+   <body style="margin-left:40%;font-size:20px;">  
+      <h1 style="margin-left :120px;">Group Chat Here</h1> 
+      <input type="text" id="code"  placeholder="Enter Your code" ></input>
+      <p id="demo" style="width : 500px;height:500px;background-color:aqua;">First Enter Code and Say Hii To ur friends to Join GroupChat</p>   
+      <div>     
+         <input type="text" id="name"  placeholder="Enter Your Name" style="width : 490px;height:30px;margin-top:-100px;" required> </input></br> 
+      <input type="text" id="message" placeholder="Enter your Message" style="width : 490px;height:50px;margin-top:10px;" required> </input>
+      <button onclick="change()">Send</button>  
+   </div>
+  
    </body> 
 
 
 </html>
-<!--
-<html>
-   <head>
-      <title>Hello world</title>
-   </head>
-   <script src = "/socket.io/socket.io.js"></script>
-   <script>
-      var socket = io();
-      socket.on('broadcast',function(data) {
-         document.body.innerHTML = '';
-         document.write(data.description);
-      });
-   </script>
-   <body>Hello world</body>
-</html>--> 
-<!---
-<html>
-   <head>
-      <title>Hello world</title>
-   </head>
-   <script src = "/socket.io/socket.io.js"></script>
-   <script>
-      var socket = io();
-      socket.on('newclientconnect',function(data) {
-        // document.body.innerHTML = "";
-         document.write(data.description);
-      });
-   </script>
-   <body>Hello world</body>
-   </html>
--->
+
+
+
+</html>
